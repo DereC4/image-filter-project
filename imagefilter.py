@@ -115,7 +115,7 @@ def filter1():
         else:
             newb = 0
 		# Changes the location to the next pixel in array
-        tempinverted[templocation] = (newr, newg, newb)
+        tempinverted[templocation] = (newg, newb, newr)
         location -= 1
         templocation += 1
 	# Creates a new image, the same size as the original
@@ -128,19 +128,26 @@ def filter1():
 #    Your Filters with User Input   #
 #####################################
 
-### Cute Explosive Mob Filter
+### Hostile Mob Filter
 def filter2():
 	print("Code for filter2")
 	pixels = img.getdata()
 	new_pixels = []
 	for p in pixels:
 		new_pixels.append(p) 
-	pastedImage = Image.open('crep.png', 'r')
+	userChoice = input("What mob filter would you like?"+
+    "Case sensitive! (creeper, enderman, derek)\n")
+	while True:
+		if(userChoice!="creeper" and userChoice!="enderman" and userChoice!="derek"):
+			userChoice = input("Invalid filter! What mob filter would you like?"
+            + "Case sensitive! (creeper, enderman, derek)\n")
+		else:
+			break
+	pastedImage = Image.open(userChoice+'.png', 'r')
 	pastedImage.thumbnail((64,64), Image.ANTIALIAS)
-	pastedImage.putalpha(50)
+	# pastedImage.putalpha(50)
 	bg_w, bg_h = img.size
-	creeperoverload = "a"
-	creeperoverload = int(input("Input the number of explosive squares you want on this filter\n"))
+	creeperoverload = int(input("Input the number of mobs you want on this filter\n"))
 	random.seed(random.randint(0,100))
 	for i in range (0,creeperoverload):
 		r1 = random.randint(0, bg_w-64)
