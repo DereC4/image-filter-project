@@ -84,7 +84,7 @@ def gray():
 #####################
 #    Your Filter    #
 #####################
-
+   
 def filter1():
     print("Code for filter1")
     pixels = img.getdata()
